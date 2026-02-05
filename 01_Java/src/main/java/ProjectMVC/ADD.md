@@ -1,5 +1,6 @@
 [추가 구현 로직]
 
 사용자 입력 받기
-검색 메서드 추가
-데이터 배열 → ArrayList로 변경
+Lombok 사용
+ENUM 추가
+ArrayList로 저장 방식 변경

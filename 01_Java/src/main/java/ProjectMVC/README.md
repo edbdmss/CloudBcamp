@@ -8,6 +8,7 @@ ProjectMVC
 │   └── StudentController.java
 ├── model
 │   └── StudentModel.java
+|   └── StudentGrade.java
 ├── model_domain
 │   └── Student.java
 ├── view
