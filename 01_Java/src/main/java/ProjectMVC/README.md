@@ -17,4 +17,4 @@ ProjectMVC
 └── README.md
 ```
 
-- 실행 파일: Startview.java
+- 실행 파일: view/Startview.java
