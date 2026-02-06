@@ -9,7 +9,7 @@ import org.jsoup.nodes.Element;
 import org.jsoup.select.Elements;
 
 
-public class jsouptest {
+public class crolling {
     
     // 우리 학과 홈페이지 교과과정 크롤링하기
     public void cehomepage() {
@@ -53,7 +53,7 @@ public class jsouptest {
 
 public static void main(String[] args) {
     
-    jsouptest j = new jsouptest();
+    crolling j = new crolling();
     j.cehomepage();
 }
 
