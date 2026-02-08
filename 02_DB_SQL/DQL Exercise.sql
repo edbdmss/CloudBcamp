@@ -31,8 +31,7 @@ where ename = 'ALLEN';
 */
 select ename, empno, deptno, sal
 from emp
-where hiredate = '1983-01-12';
-
+WHERE hiredate = '1983-01-12';
 
 /*
 직업이 MANAGER가 아닌 사람의 모든 정보를 출력
@@ -56,11 +55,12 @@ from emp
 where sal >= 800;
 
 /*
-부서번호가 20번 이상인 사원의 보든 정보 출력
+부서번호가 20번 이상인 사원의 모든 정보 출력
 */
 select *
 from emp
 where deptno >= 20;
+
 
 /*
 이름이 K로 시작하는 사람의 모든정보 출력
