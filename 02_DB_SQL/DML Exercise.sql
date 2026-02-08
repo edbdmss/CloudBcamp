@@ -28,7 +28,7 @@ order by salary;
 
 
 -- 06. 직원에게 지급될 총 급여를 구하는 쿼리를 작성하세요.
-select sum(salary)
+select sum(salary) as '총급여'
 from employees;
 
 
@@ -36,17 +36,18 @@ from employees;
 select max(salary), min(salary)
 from employees;
 
+
 -- 08. 직원 테이블에서 평균 급여와 직원 수를 가져오는 쿼리를 작성하세요.
-select avg(salary), count(*)
+select avg(salary) as '평균 급여', count(*) as '직원 수'
 from employees;
 
 
 -- 09. 회사에 근무하는 직원 수를 구하는 쿼리를 작성하세요.
-select count(distinct employee_id) 
+select count(distinct employee_id) as '직원 수'
 from employees;
 
 -- 10. 직원 테이블에서 사용 가능한 직위 개수를 가져오는 쿼리를 작성하세요.
-select count(distinct job_id)
+select count(distinct job_id) as '직위 개수'
 from employees;
 
 
