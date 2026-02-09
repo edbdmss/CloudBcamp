@@ -24,25 +24,24 @@ public class DeptDao {
         try (Connection con = DBUtil.getConnection();
                 PreparedStatement pstmt = con.prepareStatement(sql)) {
 
-            // step04
-            try (ResultSet rset = pstmt.executeQuery(sql)) {
-
-                // step05 - 행이 몇개인지 모르기때문에 while문으로 추가함.
+            try (ResultSet rset = pstmt.executeQuery()) {
+                // 행이 몇개인지 모르기때문에 while문으로 추가함.
                 while (rset.next()) {
-                    deptList.add(DeptDto.builder() // builder() 추가
+                    deptList.add(DeptDto.builder() 
                             .deptno(rset.getInt("deptno"))
                             .dname(rset.getString("dname"))
                             .loc(rset.getString("loc"))
                             .build());
+
                 }
-            }
 
-            System.out.println(con);
+                System.out.println(con);
 
-        } // finally 블록에서 close()를 수동으로 할 필요가 없음
-
+            } // finally 블록에서 close()를 수동으로 할 필요가 없음
+        }
         return deptList;
     }
+
 
 
 
@@ -54,19 +53,18 @@ public class DeptDao {
 
         try (Connection con = DBUtil.getConnection();
                 PreparedStatement pstmt = con.prepareStatement(sql);) {
-            
-            pstmt.setInt(1, deptno);
-            
-            ResultSet rset = pstmt.executeQuery();
 
+            pstmt.setInt(1, deptno);
 
             // 반환값이 하나거나 없으므로 while문 필요 x
-            if (rset.next()) {
-                dept = DeptDto.builder()
-                                .deptno(rset.getInt("deptno"))
-                                .dname(rset.getString("dname"))
-                                .loc(rset.getString("loc"))
-                                .build();
+            try (ResultSet rset = pstmt.executeQuery()) {
+                if (rset.next()) {
+                    dept = DeptDto.builder()
+                            .deptno(rset.getInt("deptno"))
+                            .dname(rset.getString("dname"))
+                            .loc(rset.getString("loc"))
+                            .build();
+                }
             }
 
             return dept;
@@ -100,48 +98,46 @@ public class DeptDao {
     }
 
 
-        // 4. 부서 번호 50으로 검색한 부서의 위치를 강남으로 수정 (GANGNAM)
-        public static void updateDept(int deptno, String loc) throws SQLException {
-            
-            String sql = "UPDATE DEPT SET loc = ? WHERE deptno = ?";
 
-            try (Connection con = DBUtil.getConnection();
+
+    // 4. 부서 번호 50으로 검색한 부서의 위치를 강남으로 수정 (GANGNAM)
+    public static void updateDept(int deptno, String loc) throws SQLException {
+
+        String sql = "UPDATE DEPT SET loc = ? WHERE deptno = ?";
+
+        try (Connection con = DBUtil.getConnection();
                 PreparedStatement pstmt = con.prepareStatement(sql)) {
 
-                // 파라미터 세팅
-                pstmt.setString(1, loc);
-                pstmt.setInt(2, deptno);
+            // 파라미터 세팅
+            pstmt.setString(1, loc);
+            pstmt.setInt(2, deptno);
 
-
-                int result = pstmt.executeUpdate();
-                if (result > 0) {
-                    System.out.println("수정 성공");
-                }
-
+            int result = pstmt.executeUpdate();
+            if (result > 0) {
+                System.out.println("수정 성공");
             }
+
         }
-
-
-
-        // 5. 부서 번호 50으로 검색한 부서의 정보를 삭제
-        public static void deleteDept(int deptno) throws SQLException {
-            
-            String sql = "DELETE FROM DEPT WHERE deptno = ?";
-
-            try (Connection con = DBUtil.getConnection();
-                PreparedStatement pstmt = con.prepareStatement(sql)) {
-
-                // 파라미터 세팅
-                pstmt.setInt(1, deptno);
-
-
-                int result = pstmt.executeUpdate();
-                if (result > 0) {
-                    System.out.println("삭제 성공");
-                }
-            }
-        }
-
-
-
     }
+
+
+
+    // 5. 부서 번호 50으로 검색한 부서의 정보를 삭제
+    public static void deleteDept(int deptno) throws SQLException {
+
+        String sql = "DELETE FROM DEPT WHERE deptno = ?";
+
+        try (Connection con = DBUtil.getConnection();
+                PreparedStatement pstmt = con.prepareStatement(sql)) {
+
+            // 파라미터 세팅
+            pstmt.setInt(1, deptno);
+
+            int result = pstmt.executeUpdate();
+            if (result > 0) {
+                System.out.println("삭제 성공");
+            }
+        }
+    }
+
+}
