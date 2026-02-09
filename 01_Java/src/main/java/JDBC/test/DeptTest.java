@@ -21,7 +21,7 @@ public class DeptTest {
 
 
             // 3
-            /*
+            /* 
             DeptDto cloud = DeptDto.builder()
                                     .deptno(50)
                                     .dname("Cloud")
@@ -33,15 +33,16 @@ public class DeptTest {
 
 
             // 4
-            /*
+            /* 
             int updatenum = 50;
             String loc = "Gangnam";
             DeptDao.updateDept(updatenum, loc);
             */
+            
 
 
             // 5
-            /*
+            /* 
             int deletenum = 50;
             DeptDao.deleteDept(deletenum);
             */
@@ -50,5 +51,6 @@ public class DeptTest {
         } catch (Exception e) {
             e.printStackTrace();
         }
+        
     }
 }
