@@ -1,5 +1,7 @@
 package JDBC.test;
 
+import java.util.List;
+
 import JDBC.dao.DeptDao;
 import JDBC.dto.DeptDto;
 
@@ -8,7 +10,8 @@ import JDBC.dto.DeptDto;
 public class DeptTest {
     public static void main(String[] args) {
         try {
-            DeptDao.getAllDepts();
+            List<DeptDto> deptList = DeptDao.getAllDepts();
+			System.out.println(deptList);
         } catch (Exception e) {
             e.printStackTrace();
         }
