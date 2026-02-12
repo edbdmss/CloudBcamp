@@ -64,7 +64,7 @@ public class DeptDao {
 
 	// 부서 생성
 	// INSERT INTO dept VALUES(50, CLOUD, SEOUL)
-	public static boolean insertDept(DeptDto cloud) throws SQLException, Exception {
+	public static boolean insertDept(DeptDto cloud) throws SQLException {
 
 		String sql = "INSERT INTO dept VALUES(?, ?, ?)";
 		try (Connection con = DBUtil.getConnection();

@@ -3,8 +3,8 @@ package JDBC_mvc.view;
 import JDBC_mvc.dept.controller.DeptController;
 import JDBC_mvc.dept.dto.DeptDto;
 
+// println은 이 View에서만 사용해야함.
 public class CompanyView {
-
 
     // 우리가 Controller에서 넘겨주는 예외 메시지는 일반적인 String 타입
     public static void printErrorMessage(String m) {
