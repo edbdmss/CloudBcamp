@@ -10,19 +10,19 @@
 
 JDBC_Company
 └─ src
-		└─ dept
-				├─ controller
-				│   └─ DeptController.java
-				├─ service
-				│   └─ DeptService.java
-				├─ dao
-				│   └─ DeptDAO.java
-				├─ dto
-				│   └─ DeptDto.java
-				├─ view
-				│   └─ DeptView.java
-				└─ util
-						└─ DBUtil.java
+    └─ dept
+         ├─ controller
+         │   └─ DeptController.java
+         ├─ service
+         │   └─ DeptService.java
+         ├─ dao
+         │   └─ DeptDAO.java
+         ├─ dto
+         │   └─ DeptDto.java
+         ├─ view
+         │   └─ DeptView.java
+         └─ util
+             └─ DBUtil.java
 
 ```
 
