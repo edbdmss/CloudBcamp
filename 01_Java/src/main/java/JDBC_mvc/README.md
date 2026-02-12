@@ -1,8 +1,8 @@
 ## MVC 구조를 적용한 Dept 테이블 기반 JDBC 코드
 
-**MVC 패턴: Model + View + Controller**
-    - M : 핵심 로직
-    - V : 출력 로직
+**MVC 패턴: Model + View + Controller** \
+    - M : 핵심 로직\
+    - V : 출력 로직\
     - C : View와 Model의 연결로
 
 ```
