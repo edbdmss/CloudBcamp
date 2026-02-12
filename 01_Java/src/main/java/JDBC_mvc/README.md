@@ -28,7 +28,9 @@ JDBC_Company
 
 <br>
 
-전체적인 흐름은 다음과 같습니다.
+전체적인 흐름은 다음과 같습니다. \
+실행파일: view/CompanyView
+
 
 ```
 
@@ -50,3 +52,5 @@ JDBC_Company
 
     DB
 ```
+
+<br>
