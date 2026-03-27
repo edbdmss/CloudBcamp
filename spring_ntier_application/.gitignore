@@ -36,15 +36,11 @@ build/
 
 ### Maven ###
 target/
-pom.xml.tag
-pom.xml.releaseBackup
-pom.xml.versionsBackup
-pom.xml.restore
-release.properties
-dependency-reduced-pom.xml
-buildNumber.properties
-.mvn/timing.properties
-# mvnw 파일들은 실행을 위해 보통 포함시킵니다.
+*.class
+.classpath
+.project
+.settings/
+
 
 ### IntelliJ IDEA ###
 .idea/
@@ -53,11 +49,7 @@ buildNumber.properties
 *.ipr
 out/
 
-### Eclipse (작성하신 내용 포함) ###
-.settings/
-.project
-.classpath
-bin/
+src/main/resources/application.properties
 
 ### macOS ###
 .DS_Store
