@@ -1,0 +1,44 @@
+apiVersion: v1                   
+kind: Pod                          
+metadata:
+  name: payment-app
+  namespace: production
+  labels:                             
+    app: payment
+    tier: backend
+    version: v1
+  annotations:
+    team: platform
+    cost-center: infra
+  
+spec:
+  initContainers:                     
+  - name: log-agent
+    image: fluent/fluent-bit:3.2
+    restartPolicy: Always             
+    volumeMounts:
+    - name: emptyDir
+      mountPath: /var/log/app
+  containers:                             
+  - name: app                     
+    image: my-payment:1.0            
+    ports:                           
+    - containerPort: 8080
+      name: http                   
+    resources:
+      requests:                         
+        cpu: "200m"
+        memory: "256Mi"
+      limits:                         
+        cpu: "500m"
+        memory: "512Mi"             
+    env:
+    - name: SPRING_PROFILES_ACTIVE
+      value: "prod"
+    volumeMounts:
+    - name: log-vol
+      mountPath: /var/log/app
+  volumes:
+  - name: log-vol
+    emptyDir: {}
+  
