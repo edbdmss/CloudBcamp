@@ -1,0 +1,40 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  name: web-app
+spec:
+  terminationGracePeriodSeconds: 30
+  initContainers:
+  - name: wait-for-redis
+    image: busybox:1.37
+    command:
+    - sh
+    - -c
+    - until nc -z redis-svc 6379; do sleep 2; done
+  containers:
+  - name: app
+    image: my-app:1.0
+    ports:
+    - containerPort: 8080
+      name: http
+    ___:                     # TODO: 시작 검사. 기동 느린 앱 위해 시간 충분히 확보용
+      httpGet:
+        path: /health
+        port: http
+      ___: 30                # TODO: 연속 실패 허용 횟수
+      periodSeconds: 10
+    ___:                     # TODO: 생존 검사. 실패 시 컨테이너 재시작
+      httpGet:
+        path: /health/liveness
+        port: http
+      periodSeconds: 10
+      failureThreshold: 3
+    ___:                     # TODO: 준비 검사. 실패 시 Service Endpoints에서 제외
+      httpGet:
+        path: /health/readiness
+        port: http
+      periodSeconds: 5
+    ___:                     # TODO: 시작/종료 훅을 정의하는 필드
+      ___:                   # TODO: 컨테이너 종료 직전 실행되는 훅
+        exec:
+          command: ["sh", "-c", "sleep 5"]
