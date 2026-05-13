@@ -1,0 +1,14 @@
+AWSTemplateFormatVersion: "2010-09-09"
+Description: "EKS Study VPC - 학습용 (실제 배포 X)"
+Parameters:
+  VpcCidr:
+    Type: String
+    Default: "10.0.0.0/16"
+Resources:
+  StudyVPC:
+    Type: AWS::EC2::VPC
+    Properties:
+      CidrBlock: !Ref VpcCidr
+      Tags:
+        - Key: Name
+          Value: eks-vpc-cfn-study

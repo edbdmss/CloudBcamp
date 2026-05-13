@@ -1,0 +1,11 @@
+vpc:
+  name: eks-vpc
+  cidr: 10.0.0.0/16
+  region: ap-northeast-2
+subnets:
+  public:
+    - { name: eks-public-subnet-2a, cidr: 10.0.1.0/24, az: ap-northeast-2a }
+    - { name: eks-public-subnet-2c, cidr: 10.0.2.0/24, az: ap-northeast-2c }
+  private:
+    - { name: eks-private-subnet-2a, cidr: 10.0.3.0/24, az: ap-northeast-2a }
+    - { name: eks-private-subnet-2c, cidr: 10.0.4.0/24, az: ap-northeast-2c }
