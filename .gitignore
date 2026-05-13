@@ -74,3 +74,19 @@ Desktop.ini
 
 *.properties
 HELP.md
+
+### Terraform ###
+.terraform/
+*.tfstate
+*.tfstate.*
+*.tfvars
+*.tfvars.json
+crash.log
+crash.*.log
+.terraform.lock.hcl
+
+
+### cloudformation ###
+*.parameters.json
+.aws-sam/
+aws-cloudformation-logs/
