@@ -84,9 +84,13 @@ HELP.md
 crash.log
 crash.*.log
 .terraform.lock.hcl
-
+**/.terraform/*
+!*.tfvars.example         # 예시 파일은 커밋 허용
+output/
+crash.log
 
 ### cloudformation ###
 *.parameters.json
 .aws-sam/
 aws-cloudformation-logs/
+
