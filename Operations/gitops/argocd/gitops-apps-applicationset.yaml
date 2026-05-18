@@ -1,0 +1,32 @@
+  apiVersion: argoproj.io/v1alpha1
+  kind: ApplicationSet
+  metadata:
+    name: gitops-apps
+    namespace: argocd
+  spec:
+    generators:
+      - git:
+          repoURL: https://github.com/edbdmss/gitops-config
+          revision: main
+          directories:
+            - path: apps/spring-boot/overlays/*
+    template:
+      metadata:
+        name: "spring-boot-{{path.basename}}"
+        namespace: argocd
+      spec:
+        project: default
+        source:
+          repoURL: https://github.com/edbdmss/gitops-config
+          targetRevision: main
+          path: "{{path}}"
+        destination:
+          server: https://kubernetes.default.svc
+          namespace: "spring-boot-{{path.basename}}"
+        syncPolicy:
+          automated:
+            prune: true
+            selfHeal: true
+          syncOptions:
+            - CreateNamespace=true
+            - ServerSideApply=true

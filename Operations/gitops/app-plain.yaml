@@ -1,0 +1,26 @@
+# argocd/app-plain.yaml
+# ArgoCD Application 정의
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: spring-boot-plain
+  namespace: argocd           # Application 은 항상 argocd 네임스페이스에 생성
+  finalizers:
+    # App 삭제 시 관련 k8s 리소스도 함께 삭제 (cascade delete)
+    - resources-finalizer.argocd.argoproj.io
+spec:
+  project: default
+  source:
+    repoURL: https://github.com/edbdmss/gitops-config
+    targetRevision: main
+    path: apps/spring-boot/plain    # 매니페스트 파일들이 있는 경로
+  destination:
+    server: https://kubernetes.default.svc    # 현재 클러스터 (로컬)
+    namespace: spring-boot-dev
+  syncPolicy:
+    automated:
+      prune: true       # Git 삭제 파일 = 클러스터 리소스도 삭제
+      selfHeal: true    # Drift 자동 복구
+    syncOptions:
+      - CreateNamespace=true    # spring-boot-dev 없으면 자동 생성
+      - ServerSideApply=true    # k8s 1.35 권장
